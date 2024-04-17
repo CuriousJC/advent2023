@@ -1,6 +1,2 @@
-github.com/curiousjc/golang-learning v0.0.0-20240416201435-554678e6b16d h1:ruXFLv7qAAUNdJ5D0mBgrZnrQcqUOfCeVl09zbyxU08=
-github.com/curiousjc/golang-learning v0.0.0-20240416201435-554678e6b16d/go.mod h1:TNr6wKozrcn/0ZgjzuY4V0woUVYORdWkCDNDUbwmfR8=
-github.com/curiousjc/golang-learning v0.0.0-20240416203704-c3d8a471c815 h1:pHTfF98R32roT+PCiQa4B0WWXP7GWrgzLOMfpxrBUfE=
-github.com/curiousjc/golang-learning v0.0.0-20240416203704-c3d8a471c815/go.mod h1:TNr6wKozrcn/0ZgjzuY4V0woUVYORdWkCDNDUbwmfR8=
-github.com/curiousjc/golang-learning v0.0.0-20240416205054-83bf26bc4a3b h1:99zMTzd/zlmxJwPoA/QZuydvEsFgiPYGjD4tGZ1FpQ4=
-github.com/curiousjc/golang-learning v0.0.0-20240416205054-83bf26bc4a3b/go.mod h1:TNr6wKozrcn/0ZgjzuY4V0woUVYORdWkCDNDUbwmfR8=
+github.com/curiousjc/golang-learning v1.0.0 h1:W7lwz02/HE9I39KHZKIwOI+CJcMVQqHPvPIdNjwDoC8=
+github.com/curiousjc/golang-learning v1.0.0/go.mod h1:TNr6wKozrcn/0ZgjzuY4V0woUVYORdWkCDNDUbwmfR8=
