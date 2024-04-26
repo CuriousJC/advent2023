@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"github.com/curiousjc/advent2023/internal/learning"
-	"github.com/curiousjc/advent2023/pkg/ex1"
+	"github.com/curiousjc/advent2023/pkg/day1"
 )
 
+// todo - commandline to print only some answers?
 func main() {
 	learning.Print()
-
-	ex1.Answer()
-
+	fmt.Println("-----------------")
+	day1.Answer()
 }
