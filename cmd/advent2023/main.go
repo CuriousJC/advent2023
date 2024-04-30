@@ -10,5 +10,6 @@ import (
 func main() {
 	learning.Print()
 	fmt.Println("-----------------")
-	day1.Answer()
+	day1.Answer1a()
+	day1.Answer1b()
 }

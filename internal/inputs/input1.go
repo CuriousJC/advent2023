@@ -14,6 +14,16 @@ func Input1() ([]string, error) {
 	}
 
 	return lines, nil
+}
+
+func Input1Validate() ([]string, error) {
+
+	lines, err := readLinesFromFile("static/input1_validate.txt")
+	if err != nil {
+		panic(err)
+	}
+
+	return lines, nil
 
 }
 
