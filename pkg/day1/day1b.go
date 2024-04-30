@@ -17,7 +17,7 @@ func Answer1b() {
 	fmt.Println("method execution took", time.Since(start))
 
 	start = time.Now()
-	fmt.Println("UtilSovle answer is: ", UtilSolve())
+	fmt.Println("UtilSolve answer is: ", UtilSolve())
 	fmt.Println("method execution took", time.Since(start))
 
 }
