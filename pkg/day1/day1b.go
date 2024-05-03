@@ -17,6 +17,14 @@ func Answer1b() {
 	fmt.Println("method execution took", time.Since(start))
 
 	start = time.Now()
+	fmt.Println("using the SPEEDY char method the answer is: ", charAnswer1bSpeedy())
+	fmt.Println("method execution took", time.Since(start))
+
+	start = time.Now()
+	fmt.Println("using the SPEEDY SPEEDY char method the answer is: ", charAnswer1bSpeedySpeedy())
+	fmt.Println("method execution took", time.Since(start))
+
+	start = time.Now()
 	fmt.Println("UtilSolve answer is: ", UtilSolve())
 	fmt.Println("method execution took", time.Since(start))
 
