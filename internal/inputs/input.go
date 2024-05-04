@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 )
 
+// todo: fix day1 to just use the generic
 func Input1() ([]string, error) {
 
 	lines, err := readLinesFromFile("static/input1.txt")
@@ -19,6 +20,17 @@ func Input1() ([]string, error) {
 func Input1Validate() ([]string, error) {
 
 	lines, err := readLinesFromFile("static/input1_validate.txt")
+	if err != nil {
+		panic(err)
+	}
+
+	return lines, nil
+
+}
+
+func GetInput(path string) ([]string, error) {
+
+	lines, err := readLinesFromFile(path)
 	if err != nil {
 		panic(err)
 	}

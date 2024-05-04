@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func Answer1b() {
+func Day1b() {
 	fmt.Println("Exercise 1b Answer is 55093")
 
 	start := time.Now()
