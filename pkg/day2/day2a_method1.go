@@ -14,7 +14,7 @@ import (
 // Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
 func method1() (total int) {
 	fmt.Println("running day2 method1...")
-	lines, err := inputs.GetInput("static/input2.txt")
+	lines, err := inputs.Get("static/day2.txt")
 	if err != nil {
 		panic(err)
 	}

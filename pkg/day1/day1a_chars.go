@@ -5,7 +5,7 @@ import (
 )
 
 func charAnswer() (total int) {
-	lines, err := inputs.Input1()
+	lines, err := inputs.Get("static/day1.txt")
 	if err != nil {
 		panic(err)
 	}

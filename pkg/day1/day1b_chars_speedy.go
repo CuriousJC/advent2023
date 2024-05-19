@@ -7,7 +7,7 @@ import (
 )
 
 func charAnswer1bSpeedy() (total int) {
-	lines, err := inputs.Input1()
+	lines, err := inputs.Get("static/day1.txt")
 	if err != nil {
 		panic(err)
 	}
@@ -33,11 +33,14 @@ func charAnswer1bSpeedy() (total int) {
 
 		//need to extract first integer character and then last integer character
 		for index, char := range line {
+			stringFound = false
 			if char >= '0' && char <= '9' {
 				if foundFirst {
+					//fmt.Println("Setting Last: ", string(char))
 					last = int(char - '0')
 				} else {
 					first = int(char - '0')
+					//fmt.Println("Setting First: ", string(char))
 					foundFirst = true
 				}
 			} else {
@@ -47,6 +50,7 @@ func charAnswer1bSpeedy() (total int) {
 				for key, value := range stringInt {
 					if len(line) >= index+len(key) {
 						if line[index:index+len(key)] == key {
+							//fmt.Println("Setting stringFound...")
 							stringFound = true
 							charValue = value
 						}
@@ -57,8 +61,10 @@ func charAnswer1bSpeedy() (total int) {
 					if charValue >= '0' && charValue <= '9' {
 						if foundFirst {
 							last = int(charValue - '0')
+							//fmt.Println("Setting Last String: ", string(charValue))
 						} else {
 							first = int(charValue - '0')
+							//fmt.Println("Setting First String: ", string(charValue))
 							foundFirst = true
 						}
 					}
@@ -70,7 +76,9 @@ func charAnswer1bSpeedy() (total int) {
 			last = first
 		}
 
-		total += (first * 10) + last
+		value := (first * 10) + last
+		//fmt.Print(line, " value is: ", value, "\n")
+		total += value
 	}
 	return total
 }

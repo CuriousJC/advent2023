@@ -8,7 +8,7 @@ import (
 )
 
 func UtilSolve() int {
-	s, err := inputs.Input1()
+	s, err := inputs.Get("static/day1.txt")
 	if err != nil {
 		panic(err)
 	}

@@ -6,7 +6,7 @@ import (
 )
 
 func Day1a() {
-	fmt.Println("Exercise 1 Answer is supposed to be 55002...")
+	fmt.Println("Exercise 1a Answer is supposed to be 55002...")
 
 	start := time.Now()
 	fmt.Println("using the regex method the answer is: ", regexAnswer())
