@@ -6,6 +6,7 @@ import (
 )
 
 func Day2() {
+	fmt.Println("------")
 	fmt.Println("Day2a Answer is supposed to be 2679...")
 
 	start := time.Now()
