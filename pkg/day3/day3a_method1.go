@@ -3,6 +3,7 @@ package day3
 import (
 	"fmt"
 	"github.com/curiousjc/advent2023/internal/inputs"
+	"strconv"
 	"strings"
 )
 
@@ -38,11 +39,22 @@ func day3aMethod1() (total int) {
 			nextLine = strings.Repeat(".", len(line))
 		}
 
-		prevCols := getSymbolColumns(prevLine)
-		procCols := getSymbolColumns(procLine)
-		nextCols := getSymbolColumns(nextLine)
+		var capturedCols []int
 
-		//TODO: CaptureCols = combine all the columns into a distinct list of columns that matter and also capture the column before and after each meaningful column
+		prevCols := getSymbolColumns(prevLine)
+		capturedCols = append(capturedCols, prevCols...)
+
+		procCols := getSymbolColumns(procLine)
+		capturedCols = append(capturedCols, procCols...)
+
+		nextCols := getSymbolColumns(nextLine)
+		capturedCols = append(capturedCols, nextCols...)
+
+		distinctCols := expandSymbolColumns(capturedCols)
+
+		for _, col := range distinctCols {
+			fmt.Println(strconv.Itoa(col))
+		}
 
 		//TODO: for each byte of the procLine
 		//if its column is a CaptureCol then grow forwards and backwards until meeting a not-integer, then capture that number, then wipe number and update procLine and continue
@@ -56,6 +68,34 @@ func day3aMethod1() (total int) {
 }
 
 func getSymbolColumns(input string) []int {
-
 	//TODO: Take a string and identify each column that has a symble, return back those column numbers in the slice
+
+	numbers := []int{1, 2, 3, 4, 5}
+
+	return numbers
+
+}
+
+func expandSymbolColumns(input []int) []int {
+	// Create a map to store unique elements
+	uniqueMap := make(map[int]bool)
+
+	// Iterate over the input slice and add each element to the map, growing left and right by one column to capture diagonals
+	for _, num := range input {
+		uniqueMap[num-1] = true
+		uniqueMap[num] = true
+		uniqueMap[num+1] = true
+	}
+
+	fmt.Println("map length is", len(uniqueMap))
+
+	// Create a new slice to store distinct elements
+	distinct := make([]int, 0, len(uniqueMap))
+
+	// Iterate over the map keys and add them to the distinct slice
+	for num := range uniqueMap {
+		distinct = append(distinct, num)
+	}
+
+	return distinct
 }
