@@ -47,27 +47,25 @@ func day3aMethod1() (total int) {
 
 		//compose a list of every column that "matters"
 		var capturedCols []int
-
 		prevCols := getSymbolColumns(prevLine)
 		capturedCols = append(capturedCols, prevCols...)
-
 		procCols := getSymbolColumns(line)
 		capturedCols = append(capturedCols, procCols...)
-
 		nextCols := getSymbolColumns(nextLine)
 		capturedCols = append(capturedCols, nextCols...)
-
 		distinctCols := expandSymbolColumns(capturedCols)
 
+		//establish our processing line separately because it will be changing
 		procLine := line
+
+		//sequence will matter
 		slices.Sort(distinctCols)
 
-		//process only the columns that matter, sequentially, looking for a digit that signals a part number
+		//process only the columns that mattered, sequentially, looking for a digit that signals a part number
 		for _, validColumn := range distinctCols {
-			//grab the rune that is at our column
 			char := rune(procLine[validColumn])
 
-			//when we have found a digit on a column we have found a piece of a part
+			//when we have found a digit on our column we have found a piece of a part
 			if unicode.IsDigit(char) {
 				digits, updatedLine := extractDigitsFromIndex(procLine, validColumn)
 				total += digits
