@@ -6,7 +6,7 @@ import (
 )
 
 func Day3() {
-	fmt.Println("Exercise 3a Answer is supposed to be xxxxxx...")
+	fmt.Println("Exercise 3a Answer is supposed to be 556057...")
 
 	start := time.Now()
 	fmt.Println("Day3a method 1 answer is: ", day3aMethod1())
