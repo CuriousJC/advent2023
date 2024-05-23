@@ -45,7 +45,7 @@ func day3aMethod1() (total int) {
 			nextLine = lines[index+1]
 		}
 
-		//compose a list of every column that "matters"
+		//compose a list of every column that "matters" for the previous line, the processed line, and the subsequent line
 		var capturedCols []int
 		prevCols := getSymbolColumns(prevLine)
 		capturedCols = append(capturedCols, prevCols...)
@@ -55,7 +55,7 @@ func day3aMethod1() (total int) {
 		capturedCols = append(capturedCols, nextCols...)
 		distinctCols := expandSymbolColumns(capturedCols)
 
-		//establish our processing line separately because it will be changing
+		//establish our processing line separately because may be changing if there's more than one part number
 		procLine := line
 
 		//sequence will matter
@@ -65,7 +65,7 @@ func day3aMethod1() (total int) {
 		for _, validColumn := range distinctCols {
 			char := rune(procLine[validColumn])
 
-			//when we have found a digit on our column we have found a piece of a part
+			//when we have found a digit on our column we have found a piece of a part number
 			if unicode.IsDigit(char) {
 				digits, updatedLine := extractDigitsFromIndex(procLine, validColumn)
 				total += digits
@@ -75,6 +75,42 @@ func day3aMethod1() (total int) {
 	}
 
 	return total
+}
+
+func getSymbolColumns(input string) []int {
+	var symbolCols []int
+
+	//anything that isn't a digit or a period should be captured
+	for index, char := range input {
+		if !unicode.IsDigit(char) {
+			if char != '.' {
+				symbolCols = append(symbolCols, index)
+			}
+		}
+	}
+
+	return symbolCols
+}
+
+func expandSymbolColumns(input []int) []int {
+	//key the map on column number
+	uniqueMap := make(map[int]bool)
+
+	//with diagonals we need to include the preceding and succeeding column
+	for _, num := range input {
+		uniqueMap[num-1] = true
+		uniqueMap[num] = true
+		uniqueMap[num+1] = true
+	}
+
+	distinct := make([]int, 0, len(uniqueMap))
+
+	//TODO: It's possible this would be faster if we just leave it as a map?
+	for num := range uniqueMap {
+		distinct = append(distinct, num)
+	}
+
+	return distinct
 }
 
 // given the string and a "hit" index, backup to the start of the digits and move forwards to the last digit; that's our part number - grab it and replace with periods
@@ -106,40 +142,4 @@ func extractDigitsFromIndex(input string, startIndex int) (fullNumber int, clean
 	fullNumber, _ = strconv.Atoi(digits)
 
 	return fullNumber, cleansedInput
-}
-
-func getSymbolColumns(input string) []int {
-	var symbolCols []int
-
-	//anything that isn't a digit or a period should be captured, and we need to increment index to change zero-index to one-index columns
-	for index, char := range input {
-		if !unicode.IsDigit(char) {
-			if char != '.' {
-				symbolCols = append(symbolCols, index)
-			}
-		}
-	}
-
-	return symbolCols
-}
-
-func expandSymbolColumns(input []int) []int {
-	//key the map on column number
-	uniqueMap := make(map[int]bool)
-
-	//with diagonals we need to include the preceding and succeeding column
-	for _, num := range input {
-		uniqueMap[num-1] = true
-		uniqueMap[num] = true
-		uniqueMap[num+1] = true
-	}
-
-	distinct := make([]int, 0, len(uniqueMap))
-
-	//TODO: It's possible this would be faster if we just leave it as a map?
-	for num := range uniqueMap {
-		distinct = append(distinct, num)
-	}
-
-	return distinct
 }
