@@ -47,3 +47,29 @@ func readLinesFromFile(filename string) ([]string, error) {
 
 	return lines, nil
 }
+
+func GetFullFile(path string) (string, error) {
+
+	// Construct the absolute file path based on the relative path to the current directory
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return "", err
+	}
+
+	file, err := os.Open(absPath)
+	if err != nil {
+		return "", err
+	}
+	defer file.Close()
+
+	var content string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		content += scanner.Text() + "\n" // Append each line to the content string
+	}
+	if err := scanner.Err(); err != nil {
+		return "", err
+	}
+
+	return content, nil
+}
