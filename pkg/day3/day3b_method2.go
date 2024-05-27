@@ -1,5 +1,7 @@
 package day3
 
+//Adapted from https://github.com/dbut2/advent-of-code
+
 import (
 	"fmt"
 	"github.com/curiousjc/advent2023/internal/inputs"

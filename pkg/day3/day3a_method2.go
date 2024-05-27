@@ -1,5 +1,11 @@
 package day3
 
+//Adapted from https://github.com/dbut2/advent-of-code
+
+//CuriousJC analysis - this code is establishing two grids that mirror each other.  The first grid is where each number, and the corresponding cells, of the 2-dimensional
+// grid are found.  The second grid2 is for each symbol.  Because they mirror you can take a cell from grid2 that has a symbol and find the surrounding cells of the grid
+// and then extrapolate the number that contains that cell.
+
 import (
 	"fmt"
 	"github.com/curiousjc/advent2023/internal/inputs"
