@@ -36,49 +36,42 @@ func day4aMethod2() (total int) {
 }
 
 func crackCardAndWinnersReggie(line string) (card []int, winners []int) {
-	// Define the regular expression pattern to match the substrings between colon and pipe
-	//re := regexp.MustCompile(`:(.*?)\|`)
-	//re := regexp.MustCompile(`:(.*?)\| (.*?)$`)
-	re := regexp.MustCompile(`:(.*?)(?:\| )?(.*?)$`)
+	cardReg := regexp.MustCompile(`:(.*?)\|`)
+	winnerReg := regexp.MustCompile(`\|(.*)`)
 
-	// Find all matches of the pattern in the input line
-	matches := re.FindAllStringSubmatch(line, -1)
+	// pull out card and winners
+	cardStr := cardReg.FindAllString(line, -1)
+	winnerStr := winnerReg.FindAllString(line, -1)
 
-	//TODO rewrite this crap.  capture everything between colon and pipe as one set, then capture all the stuff after the pipe as the second
+	//clean up our card numbers and winning numbers
+	cardNums := strings.TrimSpace(cardStr[0])
+	cardNums = strings.TrimPrefix(cardNums, ":")
+	cardNums = strings.TrimSuffix(cardNums, "|")
+	cardNumStrings := strings.Fields(cardNums)
+	winNums := strings.TrimSpace(winnerStr[0])
+	winNums = strings.TrimPrefix(winNums, "|")
+	winNumStrings := strings.Fields(winNums)
 
-	fmt.Println(line)
-	fmt.Println(matches)
+	// Convert the slices of strings to slices of integers
+	card = make([]int, len(cardNumStrings))
+	winners = make([]int, len(winNumStrings))
 
-	// Extract the matched substrings
-	if len(matches) == 1 && len(matches[0]) == 2 {
-		cardNums := strings.TrimSpace(matches[0][1])
-		winNums := strings.TrimSpace(matches[0][1])
-
-		// Split these substrings by whitespace
-		cardNumStrings := strings.Fields(cardNums)
-		winNumStrings := strings.Fields(winNums)
-
-		// Convert the slices of strings to slices of integers
-		card = make([]int, len(cardNumStrings))
-		winners = make([]int, len(winNumStrings))
-
-		for i, v := range cardNumStrings {
-			num, err := strconv.Atoi(v)
-			if err != nil {
-				fmt.Println("Error converting string to int:", err)
-				return
-			}
-			card[i] = num
+	for i, v := range cardNumStrings {
+		num, err := strconv.Atoi(v)
+		if err != nil {
+			fmt.Println("Error converting string to int:", err)
+			return
 		}
+		card[i] = num
+	}
 
-		for i, v := range winNumStrings {
-			num, err := strconv.Atoi(v)
-			if err != nil {
-				fmt.Println("Error converting string to int:", err)
-				return
-			}
-			winners[i] = num
+	for i, v := range winNumStrings {
+		num, err := strconv.Atoi(v)
+		if err != nil {
+			fmt.Println("Error converting string to int:", err)
+			return
 		}
+		winners[i] = num
 	}
 
 	return card, winners

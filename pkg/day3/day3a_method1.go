@@ -103,7 +103,6 @@ func expandSymbolColumns(input []int) []int {
 
 	distinct := make([]int, 0, len(uniqueMap))
 
-	//TODO: It's possible this would be faster if we just leave it as a map?
 	for num := range uniqueMap {
 		distinct = append(distinct, num)
 	}

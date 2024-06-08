@@ -3,8 +3,6 @@ package day4
 import (
 	"fmt"
 	"github.com/curiousjc/advent2023/internal/inputs"
-	"strconv"
-	"strings"
 )
 
 /*
@@ -33,45 +31,4 @@ func day4aMethod1() (total int) {
 	}
 
 	return total
-}
-
-func crackCardAndWinners(line string) (card []int, winners []int) {
-	//TODO regex crack instead of substring?
-
-	// Find the index of the colon and pipe
-	colonIndex := strings.Index(line, ":")
-	pipeIndex := strings.Index(line, "|")
-
-	// Extract the substrings between the colon and pipe, and after the pipe
-	cardNums := strings.TrimSpace(line[colonIndex+1 : pipeIndex])
-	winNums := strings.TrimSpace(line[pipeIndex+1:])
-
-	// Split these substrings by whitespace
-	cardNumStrings := strings.Fields(cardNums)
-	winNumStrings := strings.Fields(winNums)
-
-	// Convert the slices of strings to slices of integers
-	card = make([]int, len(cardNumStrings))
-	winners = make([]int, len(winNumStrings))
-
-	for i, v := range cardNumStrings {
-		num, err := strconv.Atoi(v)
-		if err != nil {
-			fmt.Println("Error converting string to int:", err)
-			return
-		}
-		card[i] = num
-	}
-
-	for i, v := range winNumStrings {
-		num, err := strconv.Atoi(v)
-		if err != nil {
-			fmt.Println("Error converting string to int:", err)
-			return
-		}
-		winners[i] = num
-	}
-
-	return card, winners
-
 }
